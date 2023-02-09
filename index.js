@@ -1,7 +1,10 @@
 const input_email = document.querySelector('.email');
 const input_desc = document.querySelector('.descripcion');
 const button_submit = document.querySelector('#add');
+const button_save = document.querySelector('#save');
 const content = document.querySelector('.content');
+
+const form = document.querySelector('formulario');
 
 document.addEventListener("DOMContentLoaded", function () {
     const nombres = JSON.parse(localStorage.getItem('nombres'));
@@ -27,15 +30,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
     button_submit.addEventListener('click', function(){
         const nombres = JSON.parse(localStorage.getItem('nombres')) || [];
-        const nuevoNombre = input_email.value;
+        const nuevoCorreo = input_email.value;
         const nuevaDescripcion = input_desc.value;
-        nombres.push([nuevoNombre,nuevaDescripcion]);
-        localStorage.setItem('nombres', JSON.stringify(nombres));
 
-        content.innerHTML = '<tr><th class="c1">Email </th><th class="c2">Descripción </th><th class="c3">Estado </th><th class="c4">Remover </th><th class="c5">Editar </th></tr>';
+        //Verificación
+        if (nuevaDescripcion == ""|| nuevoCorreo == ""){
+            alert("Datos incompletos. Por favor llene ambos campos.");
 
-        for(let i = 0; i < nombres.length; i++){
-            showNames(i, nombres);
+        }else if (!nuevoCorreo.includes("@")){
+            alert("Correo inválido");
+
+        }else if(nuevaDescripcion.length<20){
+            alert("Descripción demasiado corta");
+
+        }else{
+            nombres.push([nuevoCorreo,nuevaDescripcion]);
+            localStorage.setItem('nombres', JSON.stringify(nombres));
+
+            content.innerHTML = '<tr><th class="c1">Email </th><th class="c2">Descripción </th><th class="c3">Estado </th><th class="c4">Eliminar </th><th class="c5">Editar </th></tr>';
+
+            for(let i = 0; i < nombres.length; i++){
+                showNames(i, nombres);
+            }
         }
     })
 
@@ -63,22 +79,61 @@ document.addEventListener("DOMContentLoaded", function () {
         td2.appendChild(td2text);
         td3.appendChild(td3text);
     
+
+        //Botón eliminar
         const del = document.createElement('button');
-        del.innerText = "Remover";
-        //del.className = "remove";
-        del.classList = "Remover btn3";
+        del.innerText = "Eliminar";
+        del.classList = "Eliminar btn3";
         del.onclick = () => {
             eliminar(i)
         }
     
         td4.appendChild(del);
     
+        //Botón editar
         const edit = document.createElement('button');
         edit.innerText = "Editar";
-        //edit.className = "edit";
         edit.classList = "edit btn3"
         edit.onclick = () => {
-            editar()
+            input_email.value = nombres[i][0];
+            input_desc.value = nombres[i][1];
+
+            button_save.className = "btn1";
+            button_submit.className = "invisible";
+
+
+            button_save.onclick = () => {
+                nombres[i][0] = input_email.value;
+                nombres[i][1] = input_desc.value;
+
+                
+                //Verificación
+                if (input_desc.value == ""|| input_email.value == ""){
+                    alert("Datos incompletos. Por favor llene ambos campos.");
+
+                }else if (!input_email.value.includes("@")){
+                    alert("Correo inválido");
+        
+                }else if(input_desc.value.length<20){
+                    alert("Descripción demasiado corta");
+
+                }else{
+                    nombres.splice(i, 1, [input_email.value, input_desc.value]);
+                    localStorage.setItem('nombres', JSON.stringify(nombres));
+
+                    content.innerHTML = '<tr><th class="c1">Email </th><th class="c2">Descripción </th><th class="c3">Estado </th><th class="c4">Eliminar </th><th class="c5">Editar </th></tr>';
+
+                    for(let i = 0; i < nombres.length; i++){
+                        showNames(i, nombres);
+                    }
+
+                    button_save.className = "invisible";
+                    button_submit.className = "btn1";
+                }           
+            }
+
+            form.appendChild(button_save);
+            button_save.id = i;
         }
     
         td5.appendChild(edit);
@@ -90,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
         tr.appendChild(td5);
     
         content.appendChild(tr);
-        //"table" = "content"
+        //La tabla  = "content"
     
     }
 
@@ -99,92 +154,16 @@ document.addEventListener("DOMContentLoaded", function () {
         var nombres = JSON.parse(localStorage.getItem('nombres')) || [];
         nombres.splice(i, 1);
         localStorage.setItem('nombres', JSON.stringify(nombres));
-        
-        content.innerHTML = '<tr><th class="c1">Email </th><th class="c2">Descripción </th><th class="c3">Estado </th><th class="c4">Remover </th><th class="c5">Editar </th></tr><p>No hay elementos</p>';
+
+        if (nombres.length>0) {
+        content.innerHTML = '<tr><th class="c1">Email </th><th class="c2">Descripción </th><th class="c3">Estado </th><th class="c4">Eliminar </th><th class="c5">Editar </th></tr>';
+        }else{
+            content.innerHTML = '<tr><th class="c1">Email </th><th class="c2">Descripción </th><th class="c3">Estado </th><th class="c4">Eliminar </th><th class="c5">Editar </th></tr><p>No hay elementos</p>';
+        }
 
         for(let j = 0; j < nombres.length; j++){
             showNames (j, nombres);
         }
     }
 
-    function editar (){
-        alert("¯\_(ツ)_/¯");
-    }
-
-
     });
-
-
-    
-
-    /*
-    <table>
-        <tr>
-            <th>Email </th>
-            <th>Desc</th>
-            <th>Estado</th>
-            <th><button>Remover</button></th>
-            <th><button>Editar</button></th>
-        </tr>
-        <tr>
-            <td>[0,0]</td>
-            <td>[0,1]</td>
-            <td>Revisión pendiente</td>
-            <td><button>Remover</button></td>
-            <td><button>Editar</button></td>
-        </tr>
-        <tr>
-            <td>[1,0]</td>
-            <td>[1,1]</td>
-            <td>Revisión pendiente</td>
-            <td><button>Remover</button></td>
-            <td><button>Editar</button></td>
-        </tr>
-    </table>
-
-
-function showNames (i, nombres) {
-    const tr = document.createElement('tr');
-    const td1 = document.createElement('td');
-    const td2 = document.createElement('td');
-    const td3 = document.createElement('td');
-    const td4 = document.createElement('td');
-    const td5 = document.createElement('td');
-    
-    const td1text = document.createTextNode(nombres[i,0]);
-    const td2text = document.createTextNode(nombres[i,1]);
-    const td3text = document.createTextNode(Revisión pendiente);
-
-    td1.appendChild(td1text);
-    td2.appendChild(td2text);
-    td2.appendChild(td2text);
-
-    const del = document.createElement('button');
-    del.innerText = "Remover";
-    del.className = "remove";
-    del.onclick = () => {
-        eliminar(i)
-    }
-
-    td4.appendChild(del);
-
-    const edit = document.createElement('button');
-    edit.innerText = "Editar";
-    edit.className = "edit";
-    edit.onclick = () => {
-        eliminar(i)
-    }
-
-    td5.appendChild(edit);
-
-    tr.appendChild(td1);
-    tr.appendChild(td2);
-    tr.appendChild(td3);
-    tr.appendChild(td4);
-    tr.appendChild(td5);
-
-    content.appendChild(tr);
-    //"table" = "content"
-
-}
-        */

@@ -48,17 +48,20 @@
         </header>
         <main class="text">
             <section class="titulo">
-                <h1 class="titulotext">¿Está buscando algo más específico?</h1>
+                <h1 class="titulotext">¿Estás buscando algo más específico?</h1>
                 <p class="titulotext">Si te interesa alguna de las propiedades de nuestro catálogo y quieres apartarla, o quieres que hagamos una casa a tu gusto, deja tu correo y nos comunicaremos contigo lo más pronto posible.</p>
                 <h4 class="titulotext">Te contactaremos en menos de 24 horas. <a> Conoce nuestros términos y condiciones.</a></h4>
 
             </section>
-            <section class="formulario container">
+            <section id="f_add" class="formulario container">
                 <h3>Correo</h3>
                 <input type="text " class="email" name="email" id="email" placeholder="">
                 <h3>¿Qué características está buscando?</h3>
                 <textarea rows="10" class="descripcion"></textarea>
-                <button id="add" class="btn1">Agregar</button>
+                <div>
+                    <button id="add" class="btn1">Agregar</button>
+                    <button id="save" class="invisible" >Guardar</button>
+                </div>
 
             </section>
             <section class="tabla container">
@@ -67,7 +70,7 @@
                         <th class="c1">Email </th>
                         <th class="c2">Descripción </th>
                         <th class="c3">Estado </th>
-                        <th class="c4">Remover </th>
+                        <th class="c4">Eliminar </th>
                         <th class="c5">Editar </th>
                     </tr>
                 </table>

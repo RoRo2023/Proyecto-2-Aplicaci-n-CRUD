@@ -38,6 +38,7 @@ a{
 }
 
 .btn1{
+    display: block;
     background-color: #369BA8;
     border-color: #369BA8;
     color: white;
@@ -75,6 +76,10 @@ a{
     font-size: 14px;
 }
 
+.invisible{
+    display: none;
+}
+
 /*Menu*/
 .menu{
     background-color: black;
@@ -104,7 +109,6 @@ a{
     top: 80px;
     right: -20px;
     opacity: 0; 
-    /*transform: translateY(0); */
 }
 
 .menu-anidado li{
@@ -119,8 +123,6 @@ a{
 
 .menu3:hover > .menu-anidado{
     opacity: 1;
-    /*transform: translateY(100%);*/
-    /*transition: all 0.3s ease-in-out;*/
 }
 
 .head{
@@ -187,39 +189,56 @@ header nav ul {
     margin-top: 20px;
 }
 
+#save{
+    width: 120px;
+    margin-top: 20px;
+}
+
 /*Tabla*/
 .tabla{
     padding: 20px 0;
-    border-style: inset;
-    border: black;
+    /*border-style: inset;*/
+    /*border: rgb(112, 112, 112) solid;*/
 }
 
 table{
     width: 100%;
+    border-collapse: collapse; 
 }
 
 tr{
     text-align: left;
+    border-bottom: rgb(155, 155, 155) 1px solid;
 }
 
 .c1{
     min-width: 150px;
+    padding: 5px 10px;
+    display: flex;
+    
 }
 
 .c2{
-    min-width: 200px;
+    max-width: 200px;
+    overflow-wrap: break-word;
+    padding: 5px 10px;
 }
 
 .c3{
-    max-width: 75px;
+    max-width: 100px;
+    padding: 5px 10px;
 }
 
 .c4{
+    min-width: 50px;
     max-width: 50px;
+    padding: 5px 10px;
 }
 
 .c5{
+    min-width: 40px;
     max-width: 40px;
+    padding: 5px 10px;
 }
 
 
