@@ -214,8 +214,10 @@ tr{
 .c1{
     min-width: 150px;
     padding: 5px 10px;
+}
+
+td.c1{
     display: flex;
-    
 }
 
 .c2{
@@ -239,6 +241,13 @@ tr{
     min-width: 40px;
     max-width: 40px;
     padding: 5px 10px;
+}
+
+.c6{
+    display: none;
+    min-width: 40px;
+    padding: 5px 10px;
+    gap: 10px;
 }
 
 
@@ -321,103 +330,41 @@ h2{
     font-size: 20px;
 }
 
-/*
-/*Responsive
-@media screen and (max-width: 1348px){
-    .next{
-        right: -30px;
-    }
-}
 
-@media screen and (max-width: 1255px){
-    .jumbotron-img{
-        width: auto;
-        height: 100%;
+/*Responsive*/
+
+@media screen and (max-width: 1260px) {
+
+    .titulo{
+        padding: 70px 15px;
     }
 
-    .next{
-        right: 0;
-        top: 400px;
+    .formulario{
+        align-items: center;
     }
 
-    .add img{
-        height: 500px!important;
+    h3{
+        align-self: flex-start;
+        padding-left: 20px;
+    }
+
+    .descripcion{
+        width: 90%!important;
+    }
+
+    .email{
+        width: 90%!important;
     }
 }
 
 @media screen and (max-width: 1180px){
     .logo-img{
         height: 50px!important;
-        padding: 15px 0;
-    }
-
-    .catalogo{
-        grid-template-columns: 1fr;
-    }
-
-    .next{
-        display: none;
-    }
-
-    .descripcion1{
-        position: absolute;
-        bottom: 14px;
-        left: auto;
-        right: auto;
-    }
-
-    .descripcion2{
-        position: absolute;
-        left: auto;
-        right: auto;
-    }
-
-    .arrow{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-
-    }
-
-    .down{
-        display: block;
-        left: 250px;
-        bottom: -20px;
-    }
-
-    .add img{
-        height: 400px!important;
-    }
-    
-    .add-content{
-        gap: 0;
-    }
-
-    .add-content h1{
-        margin: 10px 0 0 0;
-    }
-
-    .add-content p{
-        margin: 0 0 5px 0;
-    }
-    .add-content button{
-        margin-bottom:  5px;
+        padding: 15px 10px;
     }
 }
 
 @media screen and (max-width: 965px){
-    .jumbotron nav{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .jumbotron-content{
-        margin-left: 0;
-        margin-bottom: 30px;
-        max-width: 700px;
-    }
-
     .menu1{
         display: none;
     }
@@ -426,32 +373,35 @@ h2{
         display: flex!important;
     }
 
-    .add nav{
+    .c4{
+        display: none;
+    }
+
+    .c5{
+        display: none;
+    }
+
+    .c6{
         display: flex;
-        flex-direction: column-reverse;
-        justify-content: center;
+        flex-direction: column;
     }
 
-    .add img{
+    .c6 button{
         width: 100%;
-        height: auto!important;
     }
 
-    .add-content{
-        flex-wrap: nowrap;
-        align-self: center;
-        max-width: none;
-        gap: 20px;
-        padding-bottom: 10px;
-    }
-    .add-content button{
-        max-width: 180px;
+    .eliminar{
+        display: none;
     }
 
     .foot{
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    h2{
+        padding-left: 15px;
     }
 }
 
@@ -463,13 +413,8 @@ h2{
     .menu3{
         display: flex!important;
     }
-}
-*/
-/*
-@media screen and (max-width: 680px){
 
-}
-
-@media screen and (max-width: 490px){
-    
+    .c1{
+        min-width: 0px!important;
+    }
 }
